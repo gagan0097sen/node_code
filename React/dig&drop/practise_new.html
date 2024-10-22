@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>new Drag & Drop</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: "Poppins", sans-serif;
+            box-sizing: border-box;
+        }
+
+        .container {
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: aquamarine;
+        }
+
+        #registration {
+            border: dotted;
+            width: 50%;
+            min-height: 80vh;
+            align-items: center;
+            justify-content: center;
+            background-color: rgb(255, 206, 127);
+        }
+
+        #draggableImage {
+            width: 10px;
+            height: 10px;
+        }
+
+        #drag {
+            border: 1px solid black;
+        }
+
+        form {
+            text-align: center;
+        }
+        input{
+            width: 80%;
+            margin-right: 0px;
+        }
+        
+    </style>
+</head>
+
+
+<!-- <body>
+    <div class="container">
+        <div class="registration" draggable="true">
+            <div id="drag">
+                <img src="../images/images.png">
+            </div>
+            <form>
+                <div>
+                    <label>Name:</label>
+                    <input type="text" placeholder="Enter your name" />
+                </div>
+                <div>
+                    <label>Email:</label>
+                    <input type="email" placeholder="Enter your email" />
+                </div>
+                <div>
+                    <label>Password:</label>
+                    <input type="password" placeholder="Enter your password" />
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+        let registration = getElementById("registration")
+        let container = getElementByClassName("container")
+
+        registration.addEventListener("dragstart", function (e) {
+                let selected = e.target;
+
+                container.addEventListener("dragover", function (e) {
+                    e.preventDefault()
+                })
+                container.addEventListener("drop", function (e) {
+                    container.appendChild(selected)
+                    selected = null
+                })
+            })
+    </script>
+</body> -->
+
+
+<body>
+    <div class="container">
+        <div id="registration">
+            <div>
+                <img id="draggableImage" src="../images/images.png" alt="Draggable Image" draggable="true">
+            </div>
+            <hr />
+            <form class="form-registration">
+                <div>
+                    <label>Name:</label>
+                    <input type="text" placeholder="Enter your name" />
+                </div>
+                <div>
+                    <label>Email:</label>
+                    <input type="email" placeholder="Enter your email" />
+                </div>
+                <div>
+                    <label>Password:</label>
+                    <input type="password" placeholder="Enter your password" />
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+        let draggableImage = document.getElementById("draggableImage");
+        let registration = document.getElementById("registration");
+
+        draggableImage.addEventListener("dragstart", function (e) {
+            let offsetX = e.clientX - registration.offsetLeft;
+            let offsetY = e.clientY - registration.offsetTop;
+
+            document.body.addEventListener("dragover", function (e) {
+                e.preventDefault(); 
+            });
+
+            document.body.addEventListener("drop", function (e) {
+                e.preventDefault();
+                registration.style.position = "absolute";
+                registration.style.left = (e.pageX - offsetX) + "px";
+                registration.style.top = (e.pageY - offsetY) + "px";
+            });
+        });
+    </script>
+</body>
+</html>
